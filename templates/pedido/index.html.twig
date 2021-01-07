@@ -1,0 +1,132 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Prueba | Buscar pedido{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('static/css/product_card.css') }}">
+{% endblock %}
+{% block body %}
+
+
+    <main class="container">
+        <div class="row">
+
+            <div class="col-12">
+                <h1 class="text-center">Buscar Pedido</h1>
+                <form class="form-pedido" id="form_pedido" data-path="{{ path('get_pedido') }}">
+                    <input type="text" required class="draw only-numeric" name="id_pedido" id="id_pedido"
+                           aria-labelledby="search-label" placeholder="ID pedido ">
+                    <button type="submit" id="btn">→</button>
+
+                </form>
+                <p class="mt-3 w-100 text-center">Hay pedidos creados del 1 al 22</p>
+
+                <span id="error_id_pedido" class=" text-center error w-100 mt-2"
+                      style="display:none;font-size: 12px; color:red; ">Sólo se permiten números </span>
+
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center mt-5">
+
+        <div class="spinner-border" id="spinner" style="display:none;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        </div>
+
+        {# PRODUCT CARD #}
+        <div id="seccion_card_pedido" style="display: none">
+
+        <div class="row mt-4">
+            <div class="col-12 position-relative"  style="min-height: 800px;">
+
+                <div id="make-3D-space">
+                    <h3 class="text-center titulo-pedido" >ID Pedido: <span id="id_pedido_titulo"></span></h3>
+                    <h5  class="text-center subtitulo-pedido estado_pedido"  style="color:gray"></h5>
+
+                    <div id="product-card">
+                        <div id="product-front">
+                            <div class="shadow"></div>
+                            <img  id="img_producto" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/t-shirt.png" alt=""/>
+                            <div class="image_overlay"></div>
+                            <div id="view_details">Ver detalles</div>
+                            <div class="stats">
+                                <div class="stats-container w-100">
+                                    {# <p class="position-absolute" style="top:2px;font-size:13px">ID pedido: 9</p> #}
+                                    <span  class="product_price precio_total"></span>
+                                    <span class="product_name nombre_producto"></span>
+                                    <p  class="mt-2">Cantidad: <span class="cantidad_producto"></span></p>
+
+                                    <div class="product-options">
+                                        <strong>Nombre destinatario</strong>
+
+                                        <span  class="d-block mt-1 nombre_cliente"> </span>
+
+                                        <strong>Dirección destinatario</strong>
+
+                                        <span class="d-block mt-1 mb-2 direccion_cliente">   </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="product-back">
+                            <div class="shadow"></div>
+                            <div class="stats">
+                                <div class="stats-container w-100 pt-0" style="top:40px">
+                                    <h5 class="mb-4 text-center">Detalles</h5>
+                                    <p style="color:black">
+                                        Nombre destinatario: <br>  <span class="nombre_cliente" style="color:gray"> </span>
+                                    </p>
+
+                                    <p style="color:black">
+                                        Fecha creación: <br>  <span id="fecha_creacion" style="color:gray"> </span>
+                                    </p>
+                                    <p style="color:black">
+                                        Dirección: <br> <span class="direccion_cliente" style="color:gray">  </span>
+                                    </p>
+
+                                    <p style="color:black">
+                                        Estado: <br> <span class = "estado_pedido" style="color:gray">  </span>
+                                    </p>
+
+                                    <div class="mt-2">
+                                        <span class="product_price precio_producto" style="font-size:17px" ></span>
+                                        <span class="product_name" style="font-size:17px">Precio producto</span>
+                                    </div>
+                                    <div class="mt-2">
+
+                                        <span class="product_price cantidad_producto" style="font-size:17px" ></span>
+                                        <span class="product_name" style="font-size:17px">Cantidad</span>
+                                    </div>
+                                    <div class="mt-2">
+
+                                        <span class="product_price precio_total" style="font-size:19px" ></span>
+                                        <span class="product_name" style="font-size:19px">Precio total:</span>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div id="flip-back">
+                                <div id="cy"></div>
+                                <div id="cx"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        </div>
+
+        {#- ------ -#}
+
+    </main>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('static/js/pedido.js') }}"></script>
+{% endblock %}
