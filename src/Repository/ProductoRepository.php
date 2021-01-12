@@ -27,7 +27,7 @@ class ProductoRepository extends ServiceEntityRepository
     {
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = 'SELECT o.id_order, o.date_add as creation_date, a.firstname, a.lastname, a.postcode, i.id_image, osl.name ,  od.product_quantity, od.product_name, a.city, a.address1, od.unit_price_tax_incl as product_price, od.total_price_tax_incl, od.total_price_tax_excl, c.name as country FROM ps_orders o INNER JOIN ps_address a ON o.id_address_delivery = a.id_address INNER JOIN ps_country_lang c ON a.id_country = c.id_country  INNER JOIN ps_order_detail od ON o.id_order = od.id_order INNER JOIN ps_image i ON i.id_product = od.product_id INNER JOIN ps_order_state_lang osl ON osl.id_order_state = o.current_state WHERE o.id_order = :id_pedido';
+        $sql = 'SELECT o.id_order, o.date_add as creation_date, a.firstname, a.lastname, a.postcode, i.id_image, osl.name ,  od.product_quantity, od.product_name, a.city, a.address1, od.unit_price_tax_incl as product_price, od.total_price_tax_incl, od.total_price_tax_excl, c.name as country FROM ps_orders o INNER JOIN ps_address a ON o.id_address_delivery = a.id_address INNER JOIN ps_country_lang c ON a.id_country = c.id_country  INNER JOIN ps_order_detail od ON o.id_order = od.id_order INNER JOIN ps_image i ON i.id_product = od.product_id INNER JOIN ps_order_state_lang osl ON osl.id_order_state = o.current_state WHERE od.id_order = :id_pedido';
         $stmt = $conn->prepare($sql);
         $stmt->execute(array('id_pedido' => $id_pedido));
 
